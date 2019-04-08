@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html layout:decorate="~{view/layout}">
+    <head>
+        <title>All notes</title>
+        <style>
+            .note_title {
+                font-weight: bold;
+                font-size: 1.5em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <br>
+            <h1>New note</h1>
+            <form method="POST" action="/">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Task title</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Title" name="title">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Task text</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Text" name="text">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="submit">Add</button>
+                    </div>
+                </div>
+            </form>
+
+            <br>
+
+            <div th:if="${searchQuery}">
+                <h1 th:text="'Notes containing: ' + ${searchQuery}"></h1>
+            </div>
+
+            <div th:each="note : ${notes}">
+                <p class="note_title" th:text="${note.title}"></p>
+                <p th:if="${note.text}" th:text="${note.text}"></p>
+                <a class="btn btn-danger" th:href="@{/remove/{noteId}(noteId=${note.id})}">Delete</a>
+                <br>
+            </div>
+
+        </div>
+    </body>
+</html>
