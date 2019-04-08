@@ -1,0 +1,10 @@
+spring:
+  mvc:
+    locale-resolver: fixed
+    locale: en_US
+  datasource:
+    name: notesdb
+  h2:
+    console:
+      path: /h2
+      enabled: true
