@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 
 @Entity
 public class Note {
@@ -14,6 +16,7 @@ public class Note {
     private String title;
 
     @Column(length = 4096)
+    @NotBlank
     private String text;
 
     @Override
@@ -23,6 +26,21 @@ public class Note {
                 ", title='" + title + '\'' +
                 ", text='" + text + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Note note = (Note) o;
+        return id == note.id &&
+                title.equals(note.title) &&
+                text.equals(note.text);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, text);
     }
 
     public Note() {
@@ -57,4 +75,6 @@ public class Note {
     public void setText(String text) {
         this.text = text;
     }
+
+
 }
