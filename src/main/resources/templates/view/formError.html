@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html layout:decorate="~{view/layout}">
+    <head>
+        <title>Something went wrong</title>
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <h1>Form fill error:</h1>
+            <p th:each="err : ${errors}" th:text="${err.field} + '-' + ${err.defaultMessage}"></p>
+
+        </div>
+    </body>
+</html>

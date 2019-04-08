@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html layout:decorate="~{view/layout}">
+    <head>
+        <title>Something went wrong</title>
+    </head>
+
+    <body>
+        <div layout:fragment="content">
+            <h1>Application error:</h1>
+            <p th:text="${msg}"></p>
+
+        </div>
+    </body>
+</html>
